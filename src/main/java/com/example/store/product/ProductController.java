@@ -24,8 +24,11 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public String detail(@PathVariable Integer id) {
-        return "/product/detail/"+id;
+    public String detail(@PathVariable Integer id, HttpServletRequest request) {
+        Product product = productService.findById(id);
+        request.setAttribute("product", product);
+
+        return "product/detail";
     }
 
     @PostMapping("/product/save")
