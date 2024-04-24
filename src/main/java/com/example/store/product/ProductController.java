@@ -17,7 +17,7 @@ public class ProductController {
 
     @GetMapping("/product")
     public String list(HttpServletRequest request){
-        List<Product> productList = productService.findAll();
+        List<ProductResponse.ListDTO> productList = productService.findAll();
         request.setAttribute("productList", productList);
 
         return "/product/list";
@@ -25,7 +25,7 @@ public class ProductController {
 
     @GetMapping("/product/{id}")
     public String detail(@PathVariable Integer id, HttpServletRequest request) {
-        Product product = productService.findById(id);
+        ProductResponse.DetailDTO product = productService.findById(id);
         request.setAttribute("product", product);
 
         return "product/detail";
@@ -51,7 +51,7 @@ public class ProductController {
 
     @GetMapping("/product/{id}/update-form")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request){
-        Product product = productService.findById(id);
+        ProductResponse.UpdateDTO product = productService.findUpdateById(id);
         request.setAttribute("product", product);
 
         return "/product/update-form";
@@ -65,7 +65,7 @@ public class ProductController {
 
     @GetMapping("/")
     public String main(HttpServletRequest request) {
-        List<Product> productList = productService.findAll();
+        List<ProductResponse.ListDTO> productList = productService.findAll();
         request.setAttribute("productList", productList);
 
         return "/index";

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -21,16 +22,24 @@ public class ProductService {
         productRepository.updateById(id, reqDTO);
     }
 
+    public ProductResponse.UpdateDTO findUpdateById(Integer id) {
+        Product product = productRepository.findById(id);
+        return new ProductResponse.UpdateDTO(product);
+    }
+
     @Transactional
     public void save(ProductRequest.SaveDTO reqDTO){
         productRepository.save(reqDTO);
     }
 
-    public Product findById(Integer id){
-        return productRepository.findById(id);
+    public ProductResponse.DetailDTO findById(Integer id){
+        Product product = productRepository.findById(id);
+        return new ProductResponse.DetailDTO(product);
     }
 
-    public List<Product> findAll() {
-        return productRepository.findAll();
+    public List<ProductResponse.ListDTO> findAll() {
+        List<Product> productList = productRepository.findAll();
+        return productList.stream().map(product ->
+                new ProductResponse.ListDTO(product)).toList();
     }
 }
