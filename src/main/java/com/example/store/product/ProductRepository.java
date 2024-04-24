@@ -2,6 +2,7 @@ package com.example.store.product;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,14 @@ import java.util.List;
 public class ProductRepository {
 
     private final EntityManager em;
+
+    @Transactional
+    public void deleteById(Integer id){
+        Query query = em.createNativeQuery("delete from product_tb where id=?", Product.class);
+        query.setParameter(1, id);
+
+        query.executeUpdate();
+    }
 
     public void updateById(Integer id, ProductRequest.UpdateDTO reqDTO){
         Query query = em.createNativeQuery("update product_tb set name=?, price=?, qty=? where id=?", Product.class);

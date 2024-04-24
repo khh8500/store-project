@@ -18,7 +18,11 @@
                             <div class="new-create-button">
                                 <a href="/product/1" class="btn btn-outline-primary">상세보기</a>
                             </div>
-                            <button class="btn btn-primary">삭제</button>
+                            <div class="new-create-button">
+                                <form action="/product/1/delete" method="post">
+                                    <button class="btn btn-primary">삭제하기</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -37,21 +41,24 @@
                             <div class="new-create-button">
                                 <a href="/product/2" class="btn btn-outline-primary">상세보기</a>
                             </div>
-                            <button class="btn btn-primary">삭제</button>
+                            <div class="new-create-button">
+                                <form action="/product/2/delete" method="post">
+                                    <button class="btn btn-primary">삭제하기</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
 
+        <ul class="pagination d-flex justify-content-center">
+            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
 
     </div>
-
-    <ul class="pagination d-flex justify-content-center">
-        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-
-</div>
 
 {{> /layout/footer}}

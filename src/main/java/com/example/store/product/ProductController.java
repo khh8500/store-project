@@ -59,6 +59,7 @@ public class ProductController {
 
     @PostMapping("product/{id}/delete")
     public String delete(@PathVariable Integer id){
+        productService.deleteById(id);
         return "redirect:/";
     }
 
