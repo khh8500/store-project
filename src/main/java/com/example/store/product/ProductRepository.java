@@ -13,6 +13,15 @@ public class ProductRepository {
 
     private final EntityManager em;
 
+    public void updateById(Integer id, ProductRequest.UpdateDTO reqDTO){
+        Query query = em.createNativeQuery("update product_tb set name=?, price=?, qty=? where id=?", Product.class);
+        query.setParameter(1, reqDTO.getName());
+        query.setParameter(2, reqDTO.getPrice());
+        query.setParameter(3, reqDTO.getQty());
+        query.setParameter(4, id);
+        query.executeUpdate();
+    }
+
     public void save(ProductRequest.SaveDTO reqDTO){
         Query query = em.createNativeQuery("insert into product_tb (name, price, qty, created_at) values (?,?,?, now())");
         query.setParameter(1, reqDTO.getName());

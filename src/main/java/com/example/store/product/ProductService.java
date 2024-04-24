@@ -13,6 +13,11 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     @Transactional
+    public void updateById(Integer id, ProductRequest.UpdateDTO reqDTO){
+        productRepository.updateById(id, reqDTO);
+    }
+
+    @Transactional
     public void save(ProductRequest.SaveDTO reqDTO){
         productRepository.save(reqDTO);
     }
